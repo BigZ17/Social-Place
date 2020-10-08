@@ -1,11 +1,12 @@
 const router = require("express"). Router();
+
 const {
     getAllThoughts,
     getThoughtById,
     postThought,
     updateThought,
     deleteThought
-} = require()
+} = require('../../controllers/thought-controller')
 router
 .route('/')
 // GET to get all thoughts

@@ -2,30 +2,30 @@ const { Schema, model } = require('mongoose')
 
 const ReactionSchema = new Schema ({
 
-    reactionId {
+    reactionId: {
 
-        Use Mongoose's ObjectId data type
-        Default value is set to a new ObjectId
-    }
+        // Use Mongoose's ObjectId data type
+        // Default value is set to a new ObjectId
+    },
     
     reactionBody: {
 
-        String
-        Required
-        280 character maximum
-    }
+        type: String,
+        required: true
+//        280 character maximum
+    },
     
     
     username: {
 
-        type: String
-        Required
-    }
+        type: String,
+        required: true
+    },
 
     createdAt: {
 
-        Date
-        Set //default value to the current timestamp
+        type: Date,
+        default: Date.now //default value to the current timestamp
         // Use moment in a getter method to format the timestamp on query
         // Schema Settings
         

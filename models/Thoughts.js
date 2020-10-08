@@ -4,30 +4,32 @@ const ThoughtsSchema = new Schema ({
 
     thoughtText: {
         
-        String
-        Required
+        type: String,
+        required: true
         //Must be between 1 and 280 characters
     },
     createdAt: {
         
-        Date
-        Set default value to the current timestamp
-        Use moment in a getter method to format the timestamp on query
+        type: Date,
+        default: Date.now //default value to the current timestamp
+        // Use moment in a getter method to format the timestamp on query
     },
     username: { //(The user that created this thought)
         
-        String
-        Required
+        type: String,
+        required: true
     },
     
-    reactions: { //(These are like replies)
-        
-    }
+    reactions = [ // (These are like replies)
+        "Like 🙌",
+        "Dislike 😡",
+        "Funny 😂"
+        // Array of nested documents created with the reactionSchema
+    ]
     
-    Array of nested documents created with the reactionSchema
-    Schema Settings
     
-    // Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
+//    Schema Settings
+//    Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 });
 
 const Thoughts = model('Thoughts', ThoughtsSchema);
