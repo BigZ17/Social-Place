@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Reaction = require('./Reaction');
 
 const ThoughtsSchema = new Schema ({
 
@@ -21,9 +22,10 @@ const ThoughtsSchema = new Schema ({
     },
     
     reactions = [ // (These are like replies)
-        "Like 🙌",
-        "Dislike 😡",
-        "Funny 😂"
+        Reaction, './Reaction.js'
+        // "Like 🙌",
+        // "Dislike 😡",
+        // "Funny 😂"
         // Array of nested documents created with the reactionSchema
     ]
     

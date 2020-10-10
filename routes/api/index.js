@@ -4,6 +4,6 @@ const userRoutes = require('./users');
 
 // add prefix of `/pizzas` to routes created in `pizza-routes.js`
 router.use('/thoughts', thoughtsRoutes);
-router.use('/thoughts', userRoutes);
+router.use('./users.js', userRoutes);
 
 module.exports = router;3
