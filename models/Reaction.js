@@ -1,42 +1,33 @@
-const { Schema, model, Types } = require('mongoose')
+const { Schema, model, Types } = require("mongoose");
+const moment = require("moment");
 
-const ReactionSchema = new Schema ({
-
+const reactionSchema = new Schema(
+  {
     reactionId: {
-        // Use Mongoose's ObjectId data type
-        type: Schema.Types.ObjectId,
-        // Default value is set to a new ObjectId
-        default: () => new Types.ObjectId()
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(), // default value set to a new Objectid
     },
-    
     reactionBody: {
-
-        type: String,
-        required: true
-        
-//        280 character maximum
+      type: String,
+      require: true,
+      maxlength: 280,
     },
-    
-    
     username: {
-
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-
     createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => moment(timestamp).format("MMM DD, YYYY [at] hh:mm a"),
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false
+  }
+);
 
-        type: Date,
-        //default value to the current timestamp
-        default: Date.now,
-        // Use moment in a getter method to format the timestamp on query
-        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
-        // Schema Settings
-        
-       // This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
-    }
-});
-
-const Reaction = model('Reaction', ReactionSchema)
-
-module.exports = Reaction;
+module.exports = reactionSchema;
